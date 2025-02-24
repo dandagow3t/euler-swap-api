@@ -9,14 +9,10 @@ Group=admin
 WorkingDirectory=/home/admin/euler-swap-api
 
 # Environment setup
-Environment=NODE_ENV=production
-Environment=HOME=/home/admin
-Environment=PATH=/usr/local/bin:/usr/bin:/bin:/home/admin/.local/share/pnpm
-Environment=PNPM_HOME=/home/admin/.local/share/pnpm
 EnvironmentFile=/home/admin/euler-swap-api/.env
 
 # Start command - using absolute paths
-ExecStart=/home/admin/.local/share/pnpm/pnpm start
+ExecStart=/home/admin/.local/share/pnpm/pnpm run start
 
 # Restart policy
 Restart=always

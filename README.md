@@ -29,6 +29,19 @@ pnpm run build
 pnpm run start
 ```
 
+## Run as systemd service
+
+```
+sudo cp euler-swap-api.service /etc/systemd/system/
+sudo touch /var/log/euler-swap-api.log /var/log/euler-swap-api.error.log
+sudo chown admin:admin /var/log/euler-swap-api.log /var/log/euler-swap-api.error.log
+sudo systemctl daemon-reload
+sudo systemctl enable euler-swap-api
+sudo systemctl start euler-swap-api
+sudo systemctl status euler-swap-api
+tail -f /var/log/euler-swap-api.log /var/log/euler-swap-api.error.log
+```
+
 ## Lint
 ```
 pnpm run lint       # check
