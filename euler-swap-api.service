@@ -1,0 +1,26 @@
+[Unit]
+Description=Euler Swap API
+After=network.target
+
+[Service]
+Type=simple
+User=your-user  # Replace with your service user
+WorkingDirectory=/home/admin/euler-swap-api  # Replace with actual path
+
+# Environment setup
+Environment=NODE_ENV=production
+EnvironmentFile=/home/admin/euler-swap-api/.env
+
+# Install dependencies and start the service
+ExecStartPre=/usr/bin/pnpm build
+ExecStart=/usr/bin/pnpm start
+
+# Restart policy
+Restart=always
+RestartSec=10
+
+# Basic security
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
