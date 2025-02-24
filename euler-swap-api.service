@@ -4,23 +4,26 @@ After=network.target
 
 [Service]
 Type=simple
-User=your-user  # Replace with your service user
-WorkingDirectory=/home/admin/euler-swap-api  # Replace with actual path
+User=admin
+Group=admin
+WorkingDirectory=/home/admin/euler-swap-api
 
 # Environment setup
 Environment=NODE_ENV=production
+Environment=HOME=/home/admin
+Environment=PATH=/usr/local/bin:/usr/bin:/bin:/home/admin/.local/share/pnpm
+Environment=PNPM_HOME=/home/admin/.local/share/pnpm
 EnvironmentFile=/home/admin/euler-swap-api/.env
 
-# Install dependencies and start the service
-ExecStartPre=/usr/bin/pnpm build
-ExecStart=/usr/bin/pnpm start
+# Start command - using absolute paths
+ExecStart=/home/admin/.local/share/pnpm/pnpm start
 
 # Restart policy
 Restart=always
 RestartSec=10
 
-# Basic security
-NoNewPrivileges=true
+StandardOutput=append:/var/log/euler-swap-api.log
+StandardError=append:/var/log/euler-swap-api.error.log
 
 [Install]
 WantedBy=multi-user.target
